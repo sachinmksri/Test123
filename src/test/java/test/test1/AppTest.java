@@ -33,7 +33,32 @@ public class AppTest
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//span[text()='Resume Headline']//following-sibling::span")).click();
 		Thread.sleep(3000);
+		String str=driver.findElement(By.xpath("//textarea[@id='resumeHeadlineTxt']")).getText();
+		int strlen=driver.findElement(By.xpath("//textarea[@id='resumeHeadlineTxt']")).getText().length();
+		System.out.println("*********");
+		System.out.println("Before");
+		System.out.println(str);
+		if(str.endsWith("."))
+		{
+			
+			System.out.println("has .");
+			str=str.substring(0, strlen-1);
+			driver.findElement(By.xpath("//textarea[@id='resumeHeadlineTxt']")).clear();
+			driver.findElement(By.xpath("//textarea[@id='resumeHeadlineTxt']")).sendKeys(str);
+			System.out.println("After");
+			System.out.println(str);
+		}
+		else
+		{
+			driver.findElement(By.xpath("//textarea[@id='resumeHeadlineTxt']")).clear();
+			System.out.println("No .");
+			str=str+".";
+			driver.findElement(By.xpath("//textarea[@id='resumeHeadlineTxt']")).sendKeys(str);
+			System.out.println("After");
+			System.out.println(str);
+		}
 		driver.findElement(By.xpath("(//button[text()='Save' and @type='submit'])[2]")).click();
+		Thread.sleep(8000);
 		driver.quit();
 	}
 }
